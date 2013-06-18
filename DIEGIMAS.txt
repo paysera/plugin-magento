@@ -1,0 +1,10 @@
+Diegimas
+
+1. Padarykite atsargine failu kopija[nebutina].
+2. Nukopijuokite viska i magento direktorija.
+3. Isjunkite visus cache.
+4. System -> Configuration -> Payments -> Paysera.com (irasykite Jusu Mokejimai.lt duomenis).
+
+Kontaktai
+
+Kilus klausimams prasome kreiptis i pagalba@mokejimai.lt

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+       <Mage_Paysera>
+          <version>0.1.0</version>
+       </Mage_Paysera>
+    </modules>
+ 
+    <global>
+	    <blocks>
+	     <paysera><class>Mage_Paysera_Block</class></paysera>
+	   </blocks> 
+        <models>
+            <paysera>
+                <class>Mage_Paysera_Model</class>
+            </paysera>
+        </models>
+        <resources>
+            <paysera_setup>
+                <setup>
+                    <module>Mage_Paysera</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </paysera_setup>
+            <paysera_write>
+                <connection>
+                  <use>core_write</use>
+                </connection>
+            </paysera_write>
+            <paysera_read>
+               <connection>
+                <use>core_read</use>
+              </connection>
+            </paysera_read>
+        </resources>
+    </global>
+    <frontend>
+        <routers>
+            <paysera>
+                <use>standard</use>
+                <args>
+                    <module>Mage_Paysera</module>
+                    <frontName>paysera</frontName>
+                </args>
+            </paysera>
+        </routers>
+    </frontend>
+    <default>
+        <payment>
+            <paysera>
+                <active>0</active>
+                <model>paysera/paymentMethod</model>
+                <api_key>jusu mokejimai.lt projekto id</api_key>
+                <api_secret>jusu mokejimai.lt projekto slaptazodis</api_secret>
+                <test>1</test>
+                <title>Paysera.com / Mokejimai.lt</title>
+            </paysera>
+         </payment>
+    </default>
+</config>

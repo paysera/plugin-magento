@@ -1,34 +1,10 @@
-#-- INSTRUCTION --
+Installation
 
-1. BACKUP ALL FILES [optional]
-2. Copy all files to magento directory;
-3. Turn off all cache;
-4. System -> Configuration -> Payments -> Paysera.com (write your Paysera.com project data)
+1. BACKUP ALL FILES [optional].
+2. Copy all files to magento directory.
+3. Turn off all cache.
+4. System -> Configuration -> Payments -> Paysera.com (write your Paysera.com project data).
 
-If any problems occur write email to - support@paysera.com .
+Contacts
 
-#-- UPDATES --
-
-* 2013-04-13 / FIX. Bad ammount compare
-* 2013-04-10 / FIX. Correct parameter take with POST
-* 2013-03-14 / FIX. Removed accept status change
-* 2012-02-14 / FIX. Character encoding;
-* 2012-01-27 / Security update;
-* 2011-12-09 / Implemented libwebtopay 1.5;
-* 2011-08-09 / Implemented libwebtopay 1.4;
-* 2011-08-09 / FIX. Fixed database bug;
-* 2011-04-11 / Improved callback checking;
-* 2011-04-11 / Works with Magento 1.5;
-* 2011-02-08 / Now mokejimai.lt project data is saved to database;
-* 2011-02-08 / FIX. Specification version 1.3;
-* 2010-12-01 / FIX. With price;
-* 2010-06-03 / FIX. With discount in payment controller (25 line);
-* 2010-06-02 / FIX. Removed p_name, p_surename & etc;
-* 2010-05-11 / FIX. Specification version 1.2;
-* 2010-05-10 / FIX. With callback amount checking;
-* 2010-05-05 / FIX. Removed merchantid;
-* 2010-05-03 / FIX. Callback notices;
-* 2010-04-16 / FIX. Removed merchantid check;
-* 2009-12-03 / FIX. Fixed problem with admin template, update for callback (change status when come callback, check data by new _ss2 check, more status in admin panel & etc)
-* 2009-11-12 / Now is sign param (in admin panel);
-* 2009-10-14 / FIX. Error was with order_id number.
+If any problems occur please feel free to seek help via support@paysera.com

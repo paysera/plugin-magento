@@ -1,0 +1,129 @@
+<?php $_code=$this->getMethodCode();
+require_once(Mage::getBaseDir() . '/app/code/local/Mage/Paysera/libwebtopay/WebToPay.php');
+$pData    = Mage::getStoreConfig('payment/paysera');
+
+$_customerId = Mage::getSingleton('customer/session')->getCustomerId();
+
+$_currency = Mage::app()->getStore()->getCurrentCurrencyCode();
+$locale = explode('_', Mage::app()->getLocale()->getLocaleCode());
+
+$totals = Mage::getSingleton('checkout/session')->getQuote()->getTotals();
+$grand = $totals["grand_total"]->getValue();
+ 
+$customerAddress = Mage::getSingleton('checkout/session')->getQuote()->getBillingAddress()->getData();
+
+$customerAddressIso = strtolower($customerAddress['country_id']);
+
+?>
+<ul id="payment_form_<?php echo $_code ?>" style="display:none">
+	<?php if($pData['api_methods'] == 0 ){ ?><li>
+		<div style="padding-bottom: 7px;"><?php echo $pData['desc'];?></div>
+        </li><?php } else { echo '<li><div style="padding-bottom: 7px; line-height:40px;">';
+
+/*  $paymentMethodsInfo = WebToPay::getPaymentMethodList($pData['api_key'], $_currency)
+->filterForAmount(round($grand*100), $_currency) 
+->setDefaultLanguage($lng[$locale[0]]?$lng[$locale[0]]:'en');    */      
+ 
+  $paymentMethodsInfo = WebToPay::getPaymentMethodList($pData['api_key'], $_currency)
+            ->filterForAmount(round($grand*100), $_currency)
+            ->setDefaultLanguage($locale[0]?$locale[0]:'en')
+            ->getCountries();
+  $countryCode = strtolower(Mage::getStoreConfig('general/country/default'));
+
+  $countryIso = $customerAddressIso?$customerAddressIso:$countryCode;
+  
+
+              ?>
+        
+                    <?php foreach($paymentMethodsInfo as $country){
+                        $avlcountries[] = $country->getCode();
+                    //    echo '<option '.($country->getCode() ==  $countryIso?'selected="selected"':'').' value="'.$country->getCode().'">'.$country->getTitle().'</option>';
+                    } 
+                    
+                    if(!in_array($countryIso, $avlcountries)){
+                        
+                        $countryIso = 'other';
+                    }
+                    
+                    
+                    ?>
+        
+        
+        
+                    <table>
+        <tr>
+            <td>
+                <select class="payment-country-select">
+                    <?php foreach($paymentMethodsInfo as $country){
+                        $avlcountries[] = $country->getCode();
+                        echo '<option '.($country->getCode() ==  $countryIso?'selected="selected"':'').' value="'.$country->getCode().'">'.$country->getTitle().'</option>';
+                    } ?>
+                </select> 
+            </td>
+        </tr>
+    </table>
+
+        
+               <?php foreach($paymentMethodsInfo as $country){ ?>
+                    <div id="<?=$country->getCode();?>" class="payment-countries"
+                         style="display:<?=$country->getCode() == $countryIso?'table':'none'?>;">
+                        <?php foreach($country->getGroups()as $group){ ?>
+                            <div class="payment-group-wrapper">
+                                <div class="payment-group-title"><?=$group->getTitle();?></div>
+                                <?php foreach($group->getPaymentMethods() as $paymentMethod){
+    echo '<div class="blokas" id="' . $country->getCode() . $paymentMethod->getKey() . '">'
+            . '<input class="rd_mok"'.($this->htmlEscape($this->getInfoData('check_no')) == $paymentMethod->getKey()?' checked':'').' type="radio" rel="r'. $country->getCode() . $paymentMethod->getKey() . '" name="payment[mok_budas]" value="' . $paymentMethod->getKey() . '" />&nbsp;';
+    if ($paymentMethod->getLogoUrl()) { // display logo only if available
+      echo '<img src="' . $paymentMethod->getLogoUrl() . '" style="margin-right:10px;" />';
+    }
+    echo $paymentMethod->getTitle() . '</div>';
+                         } ?>
+                                <div class="clear"></div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+              
+                <?php
+  
+  
+  
+  
+  /*
+  //  $paymentMethodsInfo = WebToPay::getPaymentMethodList($pData['api_key'], $_currency)
+//->filterForAmount(round($grand*100), $_currency);
+    
+   */
+  
+  
+
+         
+        } ?>
+</ul>
+<style type="text/css">
+   .blokas { border:1px solid #ccc; margin-bottom:-1px; padding:5px; }
+   .blokas:hover { background-color: #fff;}
+</style>
+<script type="text/javascript">
+        $$('.payment-country-select').invoke('observe','change',function(field) {
+        $$('.payment-countries').each(
+   function (e) {
+      e.setStyle({display:'none'}); 
+   } );
+           $$('#'+this.value).each(
+   function (e) {
+      e.setStyle({display:'block'}); 
+   } );
+
+       
+    });
+    
+    $$('.blokas').invoke('observe','click',function(field) {
+    
+        $$('.rd_mok').invoke('writeAttribute', 'checked', false);
+    
+        $$('input[rel=r'+this.id+']').invoke('writeAttribute', 'checked', true);
+    // other stuff ...
+    });
+
+</script>

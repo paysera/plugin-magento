@@ -2,7 +2,7 @@
 <config>
     <modules>
        <Mage_Paysera>
-          <version>0.1.0</version>
+          <version>0.2.0</version>
        </Mage_Paysera>
     </modules>
  
@@ -52,10 +52,12 @@
             <paysera>
                 <active>0</active>
                 <model>paysera/paymentMethod</model>
-                <api_key>jusu mokejimai.lt projekto id</api_key>
-                <api_secret>jusu mokejimai.lt projekto slaptazodis</api_secret>
+                <api_key>Project id</api_key>
+                <api_secret>Project password</api_secret>
+                <api_methods>0</api_methods>
                 <test>1</test>
-                <title>Paysera.com / Mokejimai.lt</title>
+                <title>Paysera (payments in different countries and in different currencies)</title>
+                <desc>Payments in different countries and in different currencies</desc>
             </paysera>
          </payment>
     </default>

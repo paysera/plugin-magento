@@ -26,8 +26,9 @@
 class Mage_Paysera_Block_Callback extends Mage_Core_Block_Abstract
 {
     protected function _toHtml()
-    {
+    { 
     	$paysera = Mage::getModel('paysera/PaymentMethod');
+        echo $paysera->validateCallback();;
     	return $paysera->validateCallback();
     }
 }

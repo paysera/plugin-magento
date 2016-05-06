@@ -25,10 +25,18 @@
  */
 class Mage_Paysera_Block_Redirect extends Mage_Core_Block_Abstract
 {
+    protected $_formBlockType = 'paysera/form';
     protected function _toHtml()
     {
     	$paysera = Mage::getModel('paysera/PaymentMethod');
-    	
+        
+          
+          //$mok_bud = $info->getAdditionalInformation('mok_bud');
+        
+        
+        
+
+
         $form = new Varien_Data_Form();
         $form->setAction($paysera->getPayURL())
             ->setId('paysera_checkout')

@@ -1,9 +1,10 @@
 Diegimas
 
 1. Padarykite atsargine failu kopija[nebutina].
-2. Nukopijuokite viska i magento direktorija.
-3. Isjunkite visus cache.
-4. System -> Configuration -> Payments -> Paysera.com (irasykite Jusu Mokejimai.lt duomenis).
+2. Nukopijuokite visus archyvo failus i jusu svetaines app/code direktorija (jeigu code direktorijos nera - sukurkite).
+3. app/etc/config.php faile, pridekite tokia eilute: 'Paysera_Paysera' => 1,  (eilute reikia prideti pries ");" ir ")," zenklus).
+4. Isjunkite visus cache.
+5. Admin meniu: Stores -> Configuration -> Sales -> Payment Methods -> Paysera (irasykite Jusu Mokejimai.lt duomenis).
 
 Kontaktai
 

@@ -1,9 +1,10 @@
 Installation
 
 1. BACKUP ALL FILES [optional].
-2. Copy all files to magento directory.
-3. Turn off all cache.
-4. System -> Configuration -> Payments -> Paysera.com (write your Paysera.com project data).
+2. Copy all archive files to your root /app/code directory. 
+3. In app/etc/config.php file, add next line: 'Paysera_Paysera' => 1,
+4. Turn off all cache.
+5. Admin menu: Stores -> Configuration -> Sales -> Payment Methods -> Paysera (write your Paysera.com project data).
 
 Contacts
 
